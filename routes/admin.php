@@ -105,6 +105,9 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/login', [HomeController::class, 'login'])->name('admin.login');
     Route::post('/login', [HomeController::class, 'loginPost'])->name('admin.loginPost');
+
+    Route::get('/logout', [HomeController::class, 'logout'])->name('admin.logout');
+
 });
 
 

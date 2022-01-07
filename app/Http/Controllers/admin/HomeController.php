@@ -35,6 +35,11 @@ class HomeController extends Controller
         }
     }
 
+    public function logout(){
+//        dd('abc');
+        Auth::logout();
+        return redirect()->route('admin.login');
+    }
     public function register(){
         return view('admin.register');
     }
