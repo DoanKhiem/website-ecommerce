@@ -59,6 +59,8 @@
                 </li>
             </ul>
         </div>
+        <div class="app-header-right">{{Auth::user()->last_name}}</div>
+
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">
                 <div class="widget-content p-0">
@@ -96,5 +98,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>

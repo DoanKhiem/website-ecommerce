@@ -101,8 +101,10 @@ Route::prefix('admin')->group(function(){
 
 
     Route::get('/register', [HomeController::class, 'register'])->name('admin.register');
+    Route::post('/register', [HomeController::class, 'registerPost'])->name('admin.registerPost');
 
     Route::get('/login', [HomeController::class, 'login'])->name('admin.login');
+    Route::post('/login', [HomeController::class, 'loginPost'])->name('admin.loginPost');
 });
 
 

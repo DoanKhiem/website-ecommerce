@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 class HomeController extends Controller
 {
 
@@ -22,10 +23,16 @@ class HomeController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+//        dd(Auth);
 //        dd($credentials);
 
-        dd(Auth::attempt($request->only('email','password')));
-//        if (Auth::attempt($request->only('email','password')))
+//        dd(Auth::attempt($request->only('email','password')));
+        if (Auth::attempt($request->only('email','password'))){
+            return redirect()->route('admin.dashboard')->with('success','Đăng nhập thành công');
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     public function register(){
@@ -34,10 +41,10 @@ class HomeController extends Controller
 
     public function registerPost(Request $request){
 //        dd($request->all());
-        $request->merge(['password'=>bcrypt($request->pasword)]);
+        $request->merge(['password'=>Hash::make($request->password)]);
 //        dd($request->all());
         User::create($request->all());
-        return redirect()->route('admin.index')->with('success','Thêm mới thành công');
+        return redirect()->route('admin.login')->with('success','Đăng ký thành công');
 
     }
 }
