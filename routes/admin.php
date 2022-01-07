@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\BlogController;
 use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\BrandController;
 /*
 |--------------------------------------------------------------------------
@@ -99,13 +100,9 @@ Route::prefix('admin')->group(function(){
     })->name('admin.list-order');
 
 
-    Route::get('/register', function () {
-        return view('admin.register');
-    })->name('admin.register');
+    Route::get('/register', [HomeController::class, 'register'])->name('admin.register');
 
-    Route::get('/login', function () {
-        return view('admin.login');
-    })->name('admin.login');
+    Route::get('/login', [HomeController::class, 'login'])->name('admin.login');
 });
 
 
