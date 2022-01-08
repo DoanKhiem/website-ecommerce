@@ -59,7 +59,7 @@
                 </li>
             </ul>
         </div>
-        <div class="app-header-right">{{Auth::user()->last_name}}</div>
+
 
         <div class="app-header-right">
             <div class="header-btn-lg pr-0">
@@ -83,7 +83,7 @@
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
                             <div class="widget-heading">
-                                Alina Mclourd
+{{--                                {{Auth::user()->last_name}} {{Auth::user()->first_name}}--}}
                             </div>
                             <div class="widget-subheading">
                                 VP People Manager

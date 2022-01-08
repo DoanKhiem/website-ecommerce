@@ -7,6 +7,8 @@ use App\Http\Controllers\admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,18 +22,7 @@ use App\Http\Controllers\admin\BrandController;
 
 Route::prefix('admin')->group(function(){
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
 
-    // category
-    Route::get('/add-category', [CategoryController::class, 'add'])->name('admin.add-category');
-    Route::post('/add-category', [CategoryController::class, 'create'])->name('admin.add-category');
-    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.edit-category');
-    Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('admin.update-category');
-    Route::get('/delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.delete-category');
-
-    Route::get('/list-category', [CategoryController::class, 'index'])->name('admin.list-category');
 
 //     banner
     Route::get('/add-banner', function () {
@@ -49,12 +40,7 @@ Route::prefix('admin')->group(function(){
 
 
 
-    // product
-    Route::resources([
-        'product' => ProductController::class,
-        'blog'=> BlogController::class,
-        'brand'=> BrandController::class,
-    ]);
+
 //    Route::get('/add-product', function () {
 //        return view('admin.add-product');
 //    })->name('admin.add-product');
@@ -99,7 +85,6 @@ Route::prefix('admin')->group(function(){
         return view('admin.list-order');
     })->name('admin.list-order');
 
-
     Route::get('/register', [HomeController::class, 'register'])->name('admin.register');
     Route::post('/register', [HomeController::class, 'registerPost'])->name('admin.registerPost');
 
@@ -109,5 +94,29 @@ Route::prefix('admin')->group(function(){
     Route::get('/logout', [HomeController::class, 'logout'])->name('admin.logout');
 
 });
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
+    // product
+    Route::resources([
+        'product' => ProductController::class,
+        'blog'=> BlogController::class,
+        'brand'=> BrandController::class,
+        'role'=> RoleController::class,
+        'user'=> UserController::class,
+    ]);
+
+    // category
+    Route::get('/add-category', [CategoryController::class, 'add'])->name('admin.add-category');
+    Route::post('/add-category', [CategoryController::class, 'create'])->name('admin.add-category');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.edit-category');
+    Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('admin.update-category');
+    Route::get('/delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.delete-category');
+    Route::get('/list-category', [CategoryController::class, 'index'])->name('admin.list-category');
+
+});
+
+
 
 

@@ -1,7 +1,12 @@
 @extends('admin.layouts.master')
 
-@section('main')   
-
+@section('main')
+    @if(Session::has('errors'))
+        <div class="mb-2 mr-2 badge badge-danger">{{Session::get('errors')}}</div>
+    @endif
+    @if(Session::has('success'))
+        <div class="mb-2 mr-2 badge badge-success">{{Session::get('success')}}</div>
+    @endif
         <div class="row">
             <div class="col-md-6 col-xl-4">
                 <div class="card mb-3 widget-content bg-midnight-bloom">
@@ -603,7 +608,7 @@
                 </div>
             </div>
         </div>
-    
+
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
 @endsection

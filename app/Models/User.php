@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use Laravel\Sanctum\HasApiTokens;
+use function Symfony\Component\Translation\t;
 
 class User extends Authenticatable
 {
@@ -31,6 +32,21 @@ class User extends Authenticatable
         'status',
     ];
 
+
+    public function permissions(){
+        return ['brand.index', 'admin.list-category', 'product.index', 'admin.dashboard' ];
+    }
+
+    public function hasPermission($route){
+//        echo $route;
+        $routes = $this->routes();
+
+        return in_array($route, $routes) ? true : false;
+    }
+    //các route được gán cho người dùng
+    public function routes(){
+        return ['brand.index', 'admin.list-category', 'product.index', 'admin.dashboard' ];
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

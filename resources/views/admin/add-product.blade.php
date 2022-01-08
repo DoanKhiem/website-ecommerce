@@ -1,10 +1,6 @@
 @extends('admin.layouts.master')
 
 @section('main')
-    @if(Session::has('success'))
-        <div class="mb-2 mr-2 badge badge-success">{{Session::get('success')}}</div>
-    @endif
-
     <div class="tab-content">
         <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
             <!-- <div class="row"> -->
