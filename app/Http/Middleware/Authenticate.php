@@ -19,10 +19,12 @@ class Authenticate extends Middleware
             if (!Auth::check()) { //nếu chưa login
                 return redirect()->route('admin.login');
             }
+
         $user = Auth::user(); //lấy thông tin user khi đã đăng nhập
+        $user->routes();
         //kiểm tra quyền của người dùng
         $route =$request->route()->getName();
-//        dd($user->can($route));
+
         return $next($request);
     }
 }
