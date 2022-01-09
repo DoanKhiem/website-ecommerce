@@ -95,8 +95,8 @@ Route::prefix('admin')->group(function(){
 
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function (){
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     // product
     Route::resources([
@@ -108,12 +108,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
     ]);
 
     // category
-    Route::get('/add-category', [CategoryController::class, 'add'])->name('admin.add-category');
-    Route::post('/add-category', [CategoryController::class, 'create'])->name('admin.add-category');
-    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.edit-category');
-    Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('admin.update-category');
-    Route::get('/delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.delete-category');
-    Route::get('/list-category', [CategoryController::class, 'index'])->name('admin.list-category');
+    Route::get('/add-category', [CategoryController::class, 'add'])->name('add-category');
+    Route::post('/add-category', [CategoryController::class, 'create'])->name('add-category');
+    Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit-category');
+    Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('update-category');
+    Route::get('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete-category');
+    Route::get('/list-category', [CategoryController::class, 'index'])->name('list-category');
 
 });
 

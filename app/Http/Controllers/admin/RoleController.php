@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RoleAddRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class RoleController extends Controller
 {
@@ -27,7 +28,16 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $routes = '';
+        $routes = [];
+        $allRoute = Route::getRoutes();
+        foreach ($allRoute as $route){
+            $name = $route->getName();
+            $pos = strpos($name, 'admin');
+            if ($pos !== false){
+                array_push($routes, $route->getName());
+            }
+        }
+//        dd($routes);
         return view('admin.add-role', compact('routes'));
 
     }

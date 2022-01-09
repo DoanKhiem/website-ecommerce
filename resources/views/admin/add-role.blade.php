@@ -7,7 +7,7 @@
             <!-- <div class="col-md-12"> -->
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Thêm nhóm quyền</h5>
-                    <form class="row" action="{{route('role.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="row" action="{{route('admin.role.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-6">
                             <div class="form-group">
@@ -18,28 +18,16 @@
                                     <div class="mb-2 mr-2 badge badge-danger">{{$errors->first('name')}}</div>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="height: 300px; overflow-y: auto">
                                 <label for="exampleCategory" class="">Route</label>
                                 <br>
+                                @foreach($routes as $route)
                                 <label>
-                                    <input type="checkbox" name="route[]" value="category.index">
-                                    Category index
+                                    <input type="checkbox" name="route[]" value="{{$route}}">
+                                    {{$route}}
                                 </label>
                                 <br>
-                                <label>
-                                    <input type="checkbox" name="route[]" value="product.index">
-                                    Product index
-                                </label>
-                                <br>
-                                <label>
-                                    <input type="checkbox" name="route[]" value="brand.index">
-                                    Brand index
-                                </label>
-                                <br>
-                                <label>
-                                    <input type="checkbox" name="route[]" value="role.index">
-                                    Role index
-                                </label>
+                                @endforeach
                             </div>
 
                         </div>

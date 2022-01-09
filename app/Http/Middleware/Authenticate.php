@@ -21,7 +21,7 @@ class Authenticate extends Middleware
             }
 
         $user = Auth::user(); //lấy thông tin user khi đã đăng nhập
-        $user->routes();
+//        $user->routes();
         //kiểm tra quyền của người dùng
         $route =$request->route()->getName();
 

@@ -22,11 +22,11 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách thương hiệu',
-                'route' => 'brand.index'
+                'route' => 'admin.brand.index'
             ],
             [
                 'label' => 'Thêm thương hiệu',
-                'route' => 'brand.create'
+                'route' => 'admin.brand.create'
             ]
         ]
     ],
@@ -36,11 +36,11 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách sản phẩm',
-                'route' => 'product.index'
+                'route' => 'admin.product.index'
             ],
             [
                 'label' => 'Thêm sản phẩm',
-                'route' => 'product.create'
+                'route' => 'admin.product.create'
             ]
         ]
     ],
@@ -64,11 +64,11 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách blog',
-                'route' => 'blog.index'
+                'route' => 'admin.blog.index'
             ],
             [
                 'label' => 'Thêm blog',
-                'route' => 'blog.create'
+                'route' => 'admin.blog.create'
             ]
         ]
     ],
