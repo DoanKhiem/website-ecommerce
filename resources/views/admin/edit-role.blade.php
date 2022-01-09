@@ -6,14 +6,14 @@
             <!-- <div class="row"> -->
             <!-- <div class="col-md-12"> -->
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Thêm nhóm quyền</h5>
-                    <form class="row" action="{{route('admin.role.store')}}" method="POST"
+                <div class="card-body"><h5 class="card-title">Sửa nhóm quyền</h5>
+                    <form class="row" action="{{route('admin.role.update',$role->id)}}" method="POST"
                           enctype="multipart/form-data">
-                        @csrf
+                        @csrf @method('PUT')
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="">Tên quyền</label>
-                                <input name="name" placeholder="Nhập tên nhóm quyền" type="text"
+                                <label class="">Tên nhóm quyền</label>
+                                <input name="name" value="{{$role->name}}" type="text"
                                        class="mb-2 form-control">
                                 @if ($errors->has('name'))
                                     <div class="mb-2 mr-2 badge badge-danger">{{$errors->first('name')}}</div>
@@ -26,7 +26,7 @@
                                 <div style="height: 300px; overflow-y: auto">
                                     <div ng-repeat="r in roles | filter: rname">
                                         <label>
-                                            <input type="checkbox" class="role-item" name="route[]" value="@{{r}}">
+                                            <input type="checkbox" class="role-item" ng-checked="set_checked(r)" ng-model="role" name="route[]" value="@{{r}}">
                                             @{{r}}
                                         </label>
                                         <br>
@@ -51,9 +51,9 @@
 
     @endforeach
 
-{{--    @php echo json_encode($routes) @endphp--}}
-{{--    <br>--}}
-{{--    {{json_encode($routes)}}--}}
+    {{--    @php echo json_encode($routes) @endphp--}}
+    {{--    <br>--}}
+    {{--    {{json_encode($routes)}}--}}
 @endsection
 
 @section('js')
@@ -63,21 +63,25 @@
         var app = angular.module('role', []);
         app.controller('roleController', function ($scope) {
             var roles = '@php echo json_encode($routes) @endphp';
+            var permission = '@php echo json_encode($permission) @endphp';
             $scope.roles = angular.fromJson(roles);
-            console.log(angular.fromJson(roles));
+            $scope.role = angular.fromJson(permission);
+            // console.log(angular.fromJson(roles));
+
+            $scope.set_checked = function(r) {
+                console.log(r);
+                for (var i = 0; i < $scope.role.length; i++) {
+                    if ($scope.role[i] == r) {
+                        return true;
+                    }
+                }
+                return false;
+            }
         })
 
 
         //jQuery check all
         $('#check-all').click(function (){
-            // var isChecked = $(this).is(':checked');
-            // // alert(isChecked);
-            // if (isChecked){
-            //     $('.role-item').attr('checked', true);
-            // }else {
-            //     $('.role-item').attr('checked', false);
-            // }
-
             $('.role-item').not(this).prop('checked', this.checked);
         })
     </script>

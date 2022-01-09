@@ -109,7 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
 
     // category
     Route::get('/add-category', [CategoryController::class, 'add'])->name('add-category');
-    Route::post('/add-category', [CategoryController::class, 'create'])->name('add-category');
+    Route::post('/add-category', [CategoryController::class, 'create']);
     Route::get('/edit-category/{id}', [CategoryController::class, 'edit'])->name('edit-category');
     Route::post('/edit-category/{id}', [CategoryController::class, 'update'])->name('update-category');
     Route::get('/delete-category/{id}', [CategoryController::class, 'delete'])->name('delete-category');

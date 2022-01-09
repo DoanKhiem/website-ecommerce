@@ -37,9 +37,9 @@
                                 <td>{{$value->phone}}</td>
                                 <td>{{$value->address}}</td>
                                 <td>
-                                    <a href="{{route('user.show', $value->id)}}" class="mb-2 mr-2 btn btn-light">Role</a>
-                                    <a href="{{route('user.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
-                                    <a href="{{route('user.destroy', $value->id)}}" class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
+                                    <a href="{{route('admin.user.show', $value->id)}}" class="mb-2 mr-2 btn btn-light">Role</a>
+                                    <a href="{{route('admin.user.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
+                                    <a href="{{route('admin.user.destroy', $value->id)}}" class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
                                 </td>
                             </tr>
                         @empty

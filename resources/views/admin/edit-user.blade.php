@@ -8,7 +8,7 @@
             <!-- <div class="col-md-12"> -->
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Sửa user</h5>
-                    <form class="row" action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+                    <form class="row" action="{{route('admin.user.update', $user->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf @method('PUT')
                         <input type="hidden" value="{{$user->id}}" name="id">
                         <div class="col-md-12">

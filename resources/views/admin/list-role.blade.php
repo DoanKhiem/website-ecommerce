@@ -22,7 +22,7 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên quyền</th>
-                            <th>Nhà sản xuất</th>
+{{--                            <th>Nhà sản xuất</th>--}}
                             <th>Chức năng</th>
                         </tr>
                         </thead>
@@ -31,13 +31,11 @@
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$value->name}}</td>
-                                <td>{{$value->permissions}}</td>
-
+{{--                                <td>{{$value->email}}</td>--}}
                                 <td>
-                                    <a href="{{route('product.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
-                                    <a href="{{route('product.destroy', $value->id)}}"
+                                    <a href="{{route('admin.role.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
+                                    <a href="{{route('admin.role.destroy', $value->id)}}"
                                        class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
-
                                 </td>
                             </tr>
                         @empty
@@ -48,7 +46,7 @@
                         </tbody>
                     </table>
                     <div class="">
-{{--                        {{$product->appends(request()->all())->links()}}--}}
+                        {{--                        {{$product->appends(request()->all())->links()}}--}}
                     </div>
                 </div>
             </div>
