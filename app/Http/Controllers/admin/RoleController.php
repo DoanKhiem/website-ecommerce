@@ -51,6 +51,7 @@ class RoleController extends Controller
     public function store(RoleAddRequest $request)
     {
 //        dd($request->all());
+//        array_push($request->route,'admin.dashboard');
         $routes = json_encode($request->route);
         $role = Role::create(['name' => $request->name, 'permissions' => $routes]);
 //        dd($request->all());
@@ -105,7 +106,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+//        dd($request->route);
+
+//        array_push($request->route, 'admin.dasaboeard');
+
+
         $routes = json_encode($request->route);
+//        dd($routes);
         $role->update(['name' => $request->name, 'permissions' => $routes]);
         return redirect()->route('admin.role.index')->with('success', 'Sửa nhóm quyền thành công');
     }

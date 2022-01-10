@@ -8,7 +8,7 @@
             <!-- <div class="col-md-12"> -->
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Thêm thương hiệu</h5>
-                    <form class="row" action="{{route('brand.store')}}" method="POST" enctype="multipart/form-data">
+                    <form class="row" action="{{route('admin.brand.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="col-md-12">
                             <div class="form-group">

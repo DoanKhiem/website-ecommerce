@@ -51,9 +51,9 @@
 
     @endforeach
 
-    {{--    @php echo json_encode($routes) @endphp--}}
-    {{--    <br>--}}
-    {{--    {{json_encode($routes)}}--}}
+{{--        @php echo json_encode($routes) @endphp--}}
+{{--        <br>--}}
+{{--    {{json_encode($routes)}}--}}
 @endsection
 
 @section('js')
@@ -62,8 +62,9 @@
     <script type="text/javascript">
         var app = angular.module('role', []);
         app.controller('roleController', function ($scope) {
-            var roles = '@php echo json_encode($routes) @endphp';
-            var permission = '@php echo json_encode($permission) @endphp';
+{{--            var roles = '@php echo json_encode($routes) @endphp';--}}
+            var roles = '{!!json_encode($routes)!!}';
+            var permission = '{!! json_encode($permission) !!}';
             $scope.roles = angular.fromJson(roles);
             $scope.role = angular.fromJson(permission);
             // console.log(angular.fromJson(roles));

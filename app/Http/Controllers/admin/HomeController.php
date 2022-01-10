@@ -56,6 +56,8 @@ class HomeController extends Controller
 
     public function error(){
         $code = request()->code;
-        return view('admin.error');
+        $config = config('error-admin.'.$code);
+
+        return view('admin.error', $config);
     }
 }
