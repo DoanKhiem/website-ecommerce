@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserAddRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(2);
+        $users = User::paginate(5);
         return view('admin.list-user', compact('users'));
     }
 
@@ -28,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::orderBy('name', 'ASC')->get();
+        return view('admin.add-user', compact('roles'));
     }
 
     /**
@@ -37,9 +39,26 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserAddRequest $request)
     {
-        //
+//        dd($request->all());
+        $data_user = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+        ];
+        if ($user = User::create($data_user)){
+            if (is_array($request->role)) {
+                foreach ($request->role as $role_id) {
+                    UserRole::create(['user_id' => $user->id, 'role_id' => $role_id]);
+                }
+            }
+            return redirect()->route('admin.user.index');
+        }
+        return redirect()->back();
     }
 
     /**

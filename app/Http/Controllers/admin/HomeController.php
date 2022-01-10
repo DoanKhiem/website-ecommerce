@@ -53,4 +53,9 @@ class HomeController extends Controller
         return redirect()->route('admin.login')->with('success','Đăng ký thành công');
 
     }
+
+    public function error(){
+        $code = request()->code;
+        return view('admin.error');
+    }
 }

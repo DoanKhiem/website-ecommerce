@@ -93,6 +93,7 @@ Route::prefix('admin')->group(function(){
 
     Route::get('/logout', [HomeController::class, 'logout'])->name('admin.logout');
 
+    Route::get('/error', [HomeController::class, 'error'])->name('admin.error');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function (){
