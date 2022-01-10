@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserEditRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
@@ -33,7 +34,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +45,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,38 +56,50 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        $roles = Role::orderBy('name','ASC')->get();
-        return view('admin.edit-user', compact('user', 'roles'));
+        $role_assignments = $user->getRoles->pluck('name', 'id')->toArray();
+//        dd($role_assignments);
+
+        $roles = Role::orderBy('name', 'ASC')->get();
+        return view('admin.edit-user', compact('user', 'roles', 'role_assignments'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserEditRequest $request, User $user)
     {
 //        dd($request->all());
-            $user->update($request->all());
-            if (is_array($request->role)){
-                foreach ($request->role as $role_id){
-                    UserRole::create(['user_id' => $user->id, 'role_id' => $role_id]);
-                }
-                return redirect()->route('admin.list-user')->with('success',"Sửa thành công user $user->name");
+        $data_user = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+        ];
+        $user->update($data_user);
+        if (is_array($request->role)) {
+            UserRole::where('user_id', $user->id)->delete();
+            foreach ($request->role as $role_id) {
+                UserRole::create(['user_id' => $user->id, 'role_id' => $role_id]);
             }
+
+        }
+        return redirect()->route('admin.user.index')->with('success', "Sửa thành công user $user->last_name");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
