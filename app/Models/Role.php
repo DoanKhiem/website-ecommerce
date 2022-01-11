@@ -10,4 +10,11 @@ class Role extends Model
     use HasFactory;
     protected $table = 'roles';
     protected $fillable = ['name', 'permissions'];
+
+    public function scopeSearch($query){
+        if ($key = request()->key){
+            $query = $query->where('name','like','%'.$key.'%');
+        }
+        return $query;
+    }
 }

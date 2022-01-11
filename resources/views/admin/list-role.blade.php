@@ -8,21 +8,24 @@
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Danh sách các quyền</h5>
-                    <form action="">
-                        <div class="search-wrapper active">
-                            <div class="input-holder">
-                                <input name="key" type="text" class="search-input" placeholder="Type to search">
-                                <button type="submit" class="search-icon"><span></span></button>
+                    <div style="margin-bottom: 20px; display: flex;
+                    justify-content: space-between; flex-direction: row; align-items: flex-end;">
+                        <h5 class="card-title" style="">Danh sách sản phẩm</h5>
+                        <form action="" style="">
+                            <div class="search-wrapper active">
+                                <div class="input-holder">
+                                    <input name="key" type="text" class="search-input" placeholder="Type to search">
+                                    <button type="submit" class="search-icon"><span></span></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <table class="mb-0 table table-hover">
                         <thead>
                         <tr>
                             <th>STT</th>
                             <th>Tên quyền</th>
-{{--                            <th>Nhà sản xuất</th>--}}
+                            {{--                            <th>Nhà sản xuất</th>--}}
                             <th>Chức năng</th>
                         </tr>
                         </thead>
@@ -31,9 +34,10 @@
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$value->name}}</td>
-{{--                                <td>{{$value->email}}</td>--}}
+                                {{--                                <td>{{$value->email}}</td>--}}
                                 <td>
-                                    <a href="{{route('admin.role.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
+                                    <a href="{{route('admin.role.edit', $value->id)}}"
+                                       class="mb-2 mr-2 btn btn-warning">Sửa</a>
                                     <a href="{{route('admin.role.destroy', $value->id)}}"
                                        class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
                                 </td>

@@ -8,15 +8,18 @@
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Danh sách các user</h5>
-                    <form action="">
-                        <div class="search-wrapper active">
-                            <div class="input-holder">
-                                <input name="key" type="text" class="search-input" placeholder="Type to search">
-                                <button type="submit" class="search-icon"><span></span></button>
+                    <div style="margin-bottom: 20px; display: flex;
+                    justify-content: space-between; flex-direction: row; align-items: flex-end;">
+                        <h5 class="card-title" style="">Danh sách sản phẩm</h5>
+                        <form action="" style="">
+                            <div class="search-wrapper active">
+                                <div class="input-holder">
+                                    <input name="key" type="text" class="search-input" placeholder="Type to search">
+                                    <button type="submit" class="search-icon"><span></span></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <table class="mb-0 table table-hover">
                         <thead>
                         <tr>
@@ -38,8 +41,10 @@
                                 <td>{{$value->address}}</td>
                                 <td>
                                     <a href="{{route('admin.user.show', $value->id)}}" class="mb-2 mr-2 btn btn-light">Role</a>
-                                    <a href="{{route('admin.user.edit', $value->id)}}" class="mb-2 mr-2 btn btn-warning">Sửa</a>
-                                    <a href="{{route('admin.user.destroy', $value->id)}}" class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
+                                    <a href="{{route('admin.user.edit', $value->id)}}"
+                                       class="mb-2 mr-2 btn btn-warning">Sửa</a>
+                                    <a href="{{route('admin.user.destroy', $value->id)}}"
+                                       class="mb-2 mr-2 btn btn-danger btDelete">Xóa</a>
                                 </td>
                             </tr>
                         @empty

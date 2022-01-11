@@ -59,13 +59,7 @@ Route::prefix('admin')->group(function(){
     })->name('admin.list-color');
 
     // user
-    Route::get('/add-user', function () {
-        return view('admin.add-user');
-    })->name('admin.add-user');
 
-    Route::get('/list-user', function () {
-        return view('admin.list-user');
-    })->name('admin.list-user');
 
     // comment
     Route::get('/add-comment', function () {

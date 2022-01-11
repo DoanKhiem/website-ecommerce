@@ -17,7 +17,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::orderBy('created_at', 'DESC')->paginate(5);
+        $roles = Role::orderBy('created_at', 'DESC')->search()->paginate(5);
         return view('admin.list-role', compact('roles'));
     }
 
@@ -56,9 +56,9 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->name, 'permissions' => $routes]);
 //        dd($request->all());
         if ($role) {
-            return redirect()->route('role.index')->with('success', 'Thêm mới nhóm quyền thành công');
+            return redirect()->route('admin.role.index')->with('success', 'Thêm mới nhóm quyền thành công');
         } else {
-            return redirect()->route('role.create')->with('error', 'Thêm mới không thành công');
+            return redirect()->route('admin.role.create')->with('error', 'Thêm mới không thành công');
         }
     }
 

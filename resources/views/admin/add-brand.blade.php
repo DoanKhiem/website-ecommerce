@@ -39,7 +39,8 @@
                             {{--                                </div>--}}
                             <div class="position-relative form-group">
                                 <label  class="">Logo thương hiệu</label>
-                                <input name="file" id="exampleFile" type="file" class="form-control-file">
+                                <input onchange="readURL(this);" name="file" id="exampleFile" type="file" class="form-control-file">
+                                <img id="blah" src="#" alt="" style="width: 300px;"/>
                                 @if ($errors->has('file'))
                                     <div class="mb-2 mr-2 badge badge-danger">{{$errors->first('file')}}</div>
                             @endif
@@ -59,4 +60,21 @@
         </div>
     </div>
 
+@endsection
+
+@section('js')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // $('#blah').attr('src', e.target.result).width(150).height(200);
+                    $('#blah').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection

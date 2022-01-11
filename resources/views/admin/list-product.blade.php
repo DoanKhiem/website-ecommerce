@@ -8,15 +8,18 @@
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Danh sách sản phẩm</h5>
-                    <form action="">
-                        <div class="search-wrapper active">
-                            <div class="input-holder">
-                                <input name="key" type="text" class="search-input" placeholder="Type to search">
-                                <button type="submit" class="search-icon"><span></span></button>
+                    <div style="margin-bottom: 20px; display: flex;
+                    justify-content: space-between; flex-direction: row; align-items: flex-end;">
+                        <h5 class="card-title" style="">Danh sách sản phẩm</h5>
+                        <form action="" style="">
+                            <div class="search-wrapper active">
+                                <div class="input-holder">
+                                    <input name="key" type="text" class="search-input" placeholder="Type to search">
+                                    <button type="submit" class="search-icon"><span></span></button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                     <table class="mb-0 table table-hover">
                         <thead>
                         <tr>

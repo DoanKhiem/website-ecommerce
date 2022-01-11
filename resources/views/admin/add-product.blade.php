@@ -19,14 +19,14 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="exampleCategory" class="">Thương hiệu</label>
+                                <label for="exampleCategory" class="">Danh mục</label>
                                 <select name="category_id" class="mb-2 form-control">
                                     @foreach($category as $value)
                                         <option value="{{$value->id}}">{{$value->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <label for="exampleCategory" class="">Nhà sản xuất</label>
+                            <label for="exampleCategory" class="">Thương hiệu</label>
                             <select name="brand_id" class="mb-2 form-control">
                                 @foreach($brand as $value)
                                     <option value="{{$value->id}}">{{$value->name}}</option>
@@ -35,7 +35,7 @@
 
                             <div class="form-group">
                                 <label class="">Description</label>
-                                <input name="description" placeholder="Nhập tên sản phảm" type="text"
+                                <input name="description" placeholder="Nhập mô tả sản phẩm" type="text"
                                        class="mb-2 form-control">
                             </div>
                             <div class="position-relative form-group">

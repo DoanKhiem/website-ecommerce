@@ -1,6 +1,6 @@
 
 @php
-
+$user = Auth::user();
 $menu_admin = config('menu-admin');
 
 @endphp
@@ -57,6 +57,7 @@ $menu_admin = config('menu-admin');
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     @foreach( $menu['items'] as $item )
+                        @if($user->can($item['route']))
                     <ul>
                         <li>
                             <a href="{{ route($item['route']) }}"
@@ -66,6 +67,7 @@ $menu_admin = config('menu-admin');
                             </a>
                         </li>
                     </ul>
+                        @endif
                     @endforeach
                 </li>
                 @endforeach

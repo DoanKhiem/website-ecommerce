@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 class HomeController extends Controller
 {
@@ -32,7 +33,7 @@ class HomeController extends Controller
             return redirect()->route('admin.dashboard')->with('success','Đăng nhập thành công');
         }
         else{
-            return redirect()->back();
+            return redirect()->back()->with('error','Đăng nhập không thành công');
         }
     }
 
@@ -59,5 +60,13 @@ class HomeController extends Controller
         $config = config('error-admin.'.$code);
 
         return view('admin.error', $config);
+    }
+
+
+    public function testEmail(){
+        $name = 'test name for email';
+        Mail::send('test.email', compact('name'), function ($email){
+            $email->to('zorobin1999@gmail.com', 'Đồ Đồng Nát');
+        });
     }
 }

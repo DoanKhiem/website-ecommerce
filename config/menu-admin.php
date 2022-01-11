@@ -92,11 +92,11 @@ return [
         'items' => [
             [
                 'label' => 'Danh sách người dùng',
-                'route' => 'admin.list-user'
+                'route' => 'admin.user.index'
             ],
             [
                 'label' => 'Thêm người dùng',
-                'route' => 'admin.add-user'
+                'route' => 'admin.user.create'
             ]
         ]
     ],
@@ -125,6 +125,20 @@ return [
             [
                 'label' => 'Thêm đơn hàng',
                 'route' => 'admin.add-order'
+            ]
+        ]
+    ],
+    [
+        'label' => 'Nhóm quyền',
+        'icon' => 'pe-7s-cart',
+        'items' => [
+            [
+                'label' => 'Danh sách nhóm quyền',
+                'route' => 'admin.role.index'
+            ],
+            [
+                'label' => 'Thêm nhóm quyền',
+                'route' => 'admin.role.create'
             ]
         ]
     ],
