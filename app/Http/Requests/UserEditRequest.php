@@ -25,13 +25,13 @@ class UserEditRequest extends FormRequest
     {
         if (request()->password){
             return [
-                'last_name'=>'required|max:10|unique:brands,name,'.request()->id,
+                'last_name'=>'required|max:10|unique:users,last_name,'.request()->id,
                 'email'=>'required|email|unique:users,email,'.request()->id,
                 'confirm_password' => 'required|same:password'
             ];
         }
         return [
-            'last_name'=>'required|max:10|unique:brands,name,'.request()->id,
+            'last_name'=>'required|max:10|unique:users,name,'.request()->id,
             'email'=>'required|email|unique:users,email,'.request()->id,
         ];
     }

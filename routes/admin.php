@@ -112,6 +112,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
 
 });
 
-
+Route::get('users/export/', [UserController::class, 'export']);
 
 

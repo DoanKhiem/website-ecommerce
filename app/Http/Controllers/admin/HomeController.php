@@ -65,8 +65,9 @@ class HomeController extends Controller
 
     public function testEmail(){
         $name = 'test name for email';
-        Mail::send('test.email', compact('name'), function ($email){
-            $email->to('zorobin1999@gmail.com', 'Đồ Đồng Nát');
+        Mail::send('test.email', compact('name'), function ($email) use ($name){
+            $email->subject('demo test mail');
+            $email->to('zorobin1999@gmail.com', $name);
         });
     }
 }
